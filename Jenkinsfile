@@ -20,5 +20,23 @@ pipeline {
                 sh 'npm test'
             }
         }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t webapp-project:${BUILD_NUMBER} .'
+            }
+        }
+
+        stage('Docker Deployment') {
+            steps {
+                sh '''
+                    docker rm -f webapp-jenkins || true
+                    docker run -d \
+                        --name webapp-jenkins \
+                        -p 3001:3000 \
+                        webapp-project:${BUILD_NUMBER}
+                '''
+            }
+        }
     }
 }
