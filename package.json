@@ -1,0 +1,10 @@
+{
+  "name": "webapp-project",
+  "version": "1.0.0",
+  "description": "Simple Node.js web application for DevOps CAT",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  }
+}
